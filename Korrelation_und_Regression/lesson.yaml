@@ -1,0 +1,96 @@
+- Class: meta
+  Course: Korrelation und Regression
+  Lesson: Korrelation und Regression
+  Author: Simon Stuber
+  Type: Standard
+  Organization: Universitaet Koblenz/landau
+  Version: 2.4.5
+
+- Class: text
+  Output: Heute beschaeftigen wir uns mit Korrelationen und Regression. Wir beginnen mit Korrelationen. Zuerst muessen wir allerdings unsere Daten laden.  
+
+- Class: cmd_question
+  Output: Fuehren Sie den Befehl "load(dateipfad_rda)" aus.
+  CorrectAnswer: "load(dateipfad_rda)"
+  AnswerTests: omnitest(correctExpr='load(dateipfad_rda)')
+  Hint: Der Befehl lautet "load(dateipfad_rda)"
+
+- Class: cmd_question
+  Output: Wir wollen nun die Korrelation der Variablen x.2 und x.3 berechnen. Wir erwarten eine mittel-starke Korrelation von etwa 0.6. Reicht unsere Stichprobengroesse von N=200 aus wenn wir eine Power von 0.8 haben moechten? Verwenden Sie die pwr.r.test() Funktion aus dem pwr Paket. 
+  CorrectAnswer: pwr.r.test(r = 0.6, power = .8,sig.level = .05)
+  AnswerTests: omnitest(correctExpr='pwr.r.test(r = 0.6, power = .8,sig.level = .05)')
+  Hint: Der Befehl lautet "pwr.r.test(r = 0.6, power = .8,sig.level = .05)"
+
+- Class: text
+  Output: Wie Sie sehen, ist eine Stichprobengroesse von 19 Personen ausreichend. Wir koennen uns also sicher sein, dass wir genuegend Personen in unserem Datensatz haben um einen potentiellen Effekt aufzudecken. 
+
+
+- Class: cmd_question
+  Output: Verwenden Sie nun die cor.test() Funktion um die Korrelation zwischen x.2 und x.3 zu berechnen. 
+  CorrectAnswer: cor.test(data$x.2, data$x.3)
+  AnswerTests: omnitest(correctExpr='cor.test(data$x.2, data$x.3)')
+  Hint: Der Befehl lautet "cor.test(data$x.2, data$x.3)"
+
+- Class: mult_question
+  Output: Welche Aussage ist korrekt?
+  AnswerChoices: Die Korrelation von 0.6 ist signifikant und beruht sehr wahrscheinlich nicht auf Zufall; Die Korrelation von 0.6 ist zwar signifikant, bei df von 198 beruht sie aber wahrscheinlich trotzdem auf Zufall; Die Korrelation von 0.6 ist nicht signifikant. 
+  CorrectAnswer: Die Korrelation von 0.6 ist signifikant und beruht sehr wahrscheinlich nicht auf Zufall
+  AnswerTests: omnitest(correctVal= 'Die Korrelation von 0.6 ist signifikant und beruht sehr wahrscheinlich nicht auf Zufall')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Plotten Sie nun einen Scatterplot der Variablen x.2 und x.3
+  CorrectAnswer: plot(data$x.2, data$x.3)
+  AnswerTests: omnitest(correctExpr='plot(data$x.2, data$x.3)')
+  Hint: Der Befehl lautet "plot(data$x.2, data$x.3)"
+
+- Class: mult_question
+  Output: Welche Aussage ist korrekt?
+  AnswerChoices: Es gibt wenige Ausreisser ; Es gibt keine deutlichen Ausreisser; Es gibt einen Ausreisser, aber nur auf x.2
+  CorrectAnswer: Es gibt keine deutlichen Ausreisser
+  AnswerTests: omnitest(correctVal= 'Es gibt keine deutlichen Ausreisser')
+  Hint: hint
+
+- Class: text
+  Output: Im Folgenden wollen wir uns die Regression genauer anschauen.
+
+- Class: cmd_question
+  Output: Erstellen Sie einen Scatterplot fuer die Variablen x.3 und y
+  CorrectAnswer: plot(data$y, data$x.3)
+  AnswerTests: omnitest(correctExpr='plot(data$x.3, data$y)')
+  Hint: Der Befehl lautet "plot(data$x.3, data$y)"
+
+- Class: cmd_question
+  Output: Rechnen Sie nun eine Regression mit der lm() Funktion und sagen Sie y vorher durch x.3. Speichern Sie das Modell in dem Objekt "mod".
+  CorrectAnswer: mod <- lm(y ~ x.3, data=data)
+  AnswerTests: omnitest(correctExpr='mod <- lm(y ~ x.3, data=data)')
+  Hint: Der Befehl lautet "mod <- lm(y ~ x.3, data=data)"
+
+
+- Class: cmd_question
+  Output: Zeichnen Sie nun die Regressionsgerade Ihres Modells in den Scatterplot mit der abline() Funktion. 
+  CorrectAnswer: abline(mod)
+  AnswerTests: omnitest(correctExpr='abline(mod)')
+  Hint: Der Befehl lautet "abline(mod)"
+
+- Class: cmd_question
+  Output: Was ist die Steigung der Regressionsgeraden gerundet auf zwei Kommastellen?
+  CorrectAnswer: 0.73
+  AnswerTests: omnitest(correctVal=0.73)
+  Hint: Sie finden die Steigung mit der summary() Funktion
+  
+- Class: cmd_question
+  Output: Was ist der Y-Achsenabschnitt der Regressionsgeraden gerundet auf zwei Kommastellen?
+  CorrectAnswer: -0.25
+  AnswerTests: omnitest(correctVal=-0.25)
+  Hint: Sie finden die Steigung mit der summary() Funktion
+  
+- Class: cmd_question
+  Output: Was ist der Anteil der aufgeklaerten Varianz gerundet auf zwei Kommastellen?
+  CorrectAnswer: 0.71
+  AnswerTests: omnitest(correctVal=0.71)
+  Hint: Sie finden der Wert mit der summary() Funktion unter "Multiple R-squared"
+
+
+- Class: text
+  Output: Das war die heutige Swirl-Lesson. Bis naechste Woche!
